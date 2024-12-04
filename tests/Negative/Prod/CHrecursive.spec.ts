@@ -4,34 +4,28 @@ import VpnController from '../../../src/methods/vpnController/vpnController';
 import RecursionsNegativeCH from '../../../src/methods/Recursions/Negative/recursionsNegativeCH';
 import { Methods } from '../../../src/methods/methods';
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnConnnect(LOCATIONS.CH)
+})
 
 test.describe('A/B Negative CH test', async  () => {
     const vpnController = new VpnController()
     const recursionsCH = new RecursionsNegativeCH()
     
-    
-
-    test.beforeAll(async () => {
-        await vpnController.vpnConnnect(LOCATIONS.CH)
-    })
-
-    test('A/B Negative CH test Goddes', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B Negative CH test Goddes', async () => {
 
         await recursionsCH.recursiveNegativeTestGoddesCH('samoilenkofluttershy@gmail.com')
     })
 
-    test('A/B Negative CH test Pharaoh', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B Negative CH test Pharaoh', async () => {
 
         await recursionsCH.recursiveNegativeTestPharaohCH('samoilenkofluttershy@gmail.com')
     })
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-    })
+})
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnDisconnect()
 })

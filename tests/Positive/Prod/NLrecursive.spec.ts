@@ -5,33 +5,29 @@ import RecursionsNL from '../../../src/methods/Recursions/Positive/recursionsNL'
 import { Methods } from '../../../src/methods/methods';
 
 
-test.describe('A/B IE test', async  () => {
+    
+    
+
+test.beforeAll(async () => {
     const vpnController = new VpnController()
+    await vpnController.vpnConnnect(LOCATIONS.NL)
+})
+
+test.describe('A/B IE test', async  () => {
     const recursionsNL = new RecursionsNL()
-    
-    
 
-    test.beforeAll(async () => {
-        await vpnController.vpnConnnect(LOCATIONS.NL)
-    })
-
-    test('A/B NL test GodNLs', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B NL test GodNLs', async () => {
 
         await recursionsNL.recursiveTestGoddesNL()
     })
 
-    test('A/B NL test Pharaoh', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B NL test Pharaoh', async () => {
 
         await recursionsNL.recursiveTestPharaohNL()
     })
+})
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-    })
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnDisconnect()
 })

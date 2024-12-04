@@ -15,18 +15,12 @@ test.describe('A/B Negative AT test', async  () => {
     const recursionsAT = new RecursionsNegativeAT()
     
 
-    test('A/B Negative AT test Goddes', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B Negative AT test Goddes', async () => {
 
         await recursionsAT.recursiveNegativeTestGoddesAT('samoilenkofluttershy@gmail.com')
     })
 
-    test('A/B Negative AT test Pharaoh', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B Negative AT test Pharaoh', async () => {
         
         await recursionsAT.recursiveNegativeTestPharaohAT('samoilenkofluttershy@gmail.com')
     })

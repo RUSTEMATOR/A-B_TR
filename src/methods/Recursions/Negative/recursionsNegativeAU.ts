@@ -89,7 +89,7 @@ export default class RecursionsNegativeAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestGoddesAU(wrongEmail);
+            return this.recursiveNegativeTestGoddesAU(wrongEmail, stageLink);
         }
     }
 
@@ -163,7 +163,7 @@ export default class RecursionsNegativeAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestPharaohAU(wrongEmail);
+            return this.recursiveNegativeTestPharaohAU(wrongEmail, stageLink);
         }
     }
 }

@@ -92,7 +92,7 @@ export default class RecursionsNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestGoddesNL();
+            return this.recursiveTestGoddesNL(stageLink);
         }
     }
 
@@ -168,7 +168,7 @@ export default class RecursionsNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestPharaohNL();
+            return this.recursiveTestPharaohNL(stageLink);
         }
     }
 }

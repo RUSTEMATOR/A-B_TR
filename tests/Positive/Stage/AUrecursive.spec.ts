@@ -3,35 +3,29 @@ import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/vpnController/vpnController';
 import RecursionsAU from '../../../src/methods/Recursions/Positive/recursionsAU';
 import { Methods } from '../../../src/methods/methods';
+ 
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnConnnect(LOCATIONS.AU)
+})
 
 test.describe('A/B AU Stage test', async  () => {
-    const vpnController = new VpnController()
     const recursionsAU = new RecursionsAU()
-    
-    
 
-    test.beforeAll(async () => {
-        await vpnController.vpnConnnect(LOCATIONS.AU)
-    })
-
-    test('A/B AU test Goddes', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B AU test Goddes', async () => {
 
         await recursionsAU.recursiveTestGoddesAU(STAGE_LINK)
     })
 
-    test('A/B AU test Pharaoh', async ({page}) => {
-        const methods = new Methods(page)
-        await methods.sleep(5000)
-        await methods.page.close()
+    test('A/B AU test Pharaoh', async () => {
 
         await recursionsAU.recursiveTestPharaohAU(STAGE_LINK)
     })
+})
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-    })
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnDisconnect()
 })

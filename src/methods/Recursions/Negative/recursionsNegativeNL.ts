@@ -92,7 +92,7 @@ export default class RecursionsNegativeNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestGoddesNL(wrongEmail);
+            return this.recursiveNegativeTestGoddesNL(wrongEmail, stageLink);
         }
     }
 
@@ -167,7 +167,7 @@ export default class RecursionsNegativeNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestPharaohNL(wrongEmail);
+            return this.recursiveNegativeTestPharaohNL(wrongEmail, stageLink);
         }
     }
 }
