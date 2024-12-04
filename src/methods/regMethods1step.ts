@@ -46,14 +46,14 @@ export class RegMethods1Step {
         await this.page.locator("button[type=submit]").click()
     }
 
-    async logActions(randomEmail: string, actualBtag: string, expectedBtag: string){
+    async logActions(randomEmail: string, actualstag: string, expectedstag: string){
         const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         const finalUrl = this.page.url()
 
         qase.comment(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n\n
-            Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n`)
+            Actual stag: ${actualstag}\n Expected stag: ${expectedstag}\n\n`)
         console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
-        console.log('Actual btag:', actualBtag);
+        console.log('Actual stag:', actualstag);
 
         
         fs.appendFileSync('usedEmails.txt', `Used email: ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)

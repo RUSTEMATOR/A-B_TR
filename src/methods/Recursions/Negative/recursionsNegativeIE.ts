@@ -1,6 +1,6 @@
 import { Methods } from "../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { EXPECTED_QUERY } from "../../../Data/constants";
+import { ERROR_TEXT, EXPECTED_QUERY } from "../../../Data/constants";
 import { EXPECTED_IRELAND_LINKS } from "../../../Data/IE/ielandExpectedLinks";
 import { qase } from "playwright-qase-reporter/playwright";
 import { RegMethods1Step } from "../../regMethods1step";
@@ -70,7 +70,7 @@ export default class RecursionsNegativeIE {
             qase.comment(`Registered with: ${wrongEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
-                Actual btag: ${actualStag}\n\n
+                Actual stag: ${actualStag}\n\n
                 
                 Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_IRELAND_LINKS.goddes}\n${EXPECTED_IRELAND_LINKS.pharaoh}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryIE}\n Received parameters: ${receivedParameters}
@@ -81,7 +81,9 @@ export default class RecursionsNegativeIE {
             
 
             await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
+         
 
             await ctx.close();
 
@@ -142,7 +144,7 @@ export default class RecursionsNegativeIE {
             qase.comment(`Registered with: ${wrongEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
-                Actual btag: ${actualStag}\n\n
+                Actual stag: ${actualStag}\n\n
                 
                 Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_IRELAND_LINKS.pharaoh}\n${EXPECTED_IRELAND_LINKS.goddes}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryIE}\n Received parameters: ${receivedParameters}
@@ -153,7 +155,9 @@ export default class RecursionsNegativeIE {
             // console.log('Actual stag:', actualStag);
 
             await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
+           
 
             await ctx.close();
 

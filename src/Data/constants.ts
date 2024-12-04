@@ -38,8 +38,8 @@ export const EXPECTED_QUERY: IExpectedQuery = {
 
 
 export const ERROR_TEXT = {
-    EN: 'has already been taken',
-    DE: 'ist bereits vergeben',
+    EN: 'Multiaccounting is not allowed',
+    DE: 'Multiaccounting ist nicht erlaubt',
     FR: "n'est pas disponible",
     NO: "has already been taken"
 }

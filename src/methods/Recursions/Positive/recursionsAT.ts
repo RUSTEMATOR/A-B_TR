@@ -73,7 +73,7 @@ export default class RecursionsAT {
             qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
-                Actual btag: ${actualStag}\n\n
+                Actual stag: ${actualStag}\n\n
                 
                 Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRIA_LINKS.goddes}\n${EXPECTED_AUSTRIA_LINKS.pharaoh}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAT}\n Received parameters: ${receivedParameters}

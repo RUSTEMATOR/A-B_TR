@@ -1,6 +1,6 @@
 import { Methods } from "../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { EXPECTED_QUERY } from "../../../Data/constants";
+import { ERROR_TEXT, EXPECTED_QUERY } from "../../../Data/constants";
 import { EXPECTED_AUSTRIA_LINKS } from "../../../Data/AT/expectedAustriaLinks";
 import { qase } from "playwright-qase-reporter/playwright";
 import { RegMethods1Step } from "../../regMethods1step";
@@ -70,7 +70,7 @@ export default class RecursionsNegativeAT {
             qase.comment(`Registered with: ${wrongEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
-                Actual btag: ${actualStag}\n\n
+                Actual stag: ${actualStag}\n\n
                 
                 Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRIA_LINKS.goddes}\n${EXPECTED_AUSTRIA_LINKS.pharaoh}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAT}\n Received parameters: ${receivedParameters}
@@ -81,7 +81,9 @@ export default class RecursionsNegativeAT {
             // console.log('Actual stag:', actualStag);
 
             await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.DE)
             await regMethods.page.waitForTimeout(10000)
+            
 
             await ctx.close();
 
@@ -145,7 +147,9 @@ export default class RecursionsNegativeAT {
             // console.log('Actual stag:', actualStag);
 
             await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.DE)
             await regMethods.page.waitForTimeout(10000)
+            
 
             await ctx.close();
 

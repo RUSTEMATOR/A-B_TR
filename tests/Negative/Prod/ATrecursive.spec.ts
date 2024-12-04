@@ -4,20 +4,16 @@ import VpnController from '../../../src/methods/vpnController/vpnController';
 import RecursionsNegativeAT from '../../../src/methods/Recursions/Negative/recursionsNegativeAT';
 import { Methods } from '../../../src/methods/methods';
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()   
+    await vpnController.vpnConnnect(LOCATIONS.AT)
+
+})
 
 test.describe('A/B Negative AT test', async  () => {
-    const vpnController = new VpnController()
+
     const recursionsAT = new RecursionsNegativeAT()
     
-    
-    
-    
-
-    test.beforeAll(async () => {
-       
-        await vpnController.vpnConnnect(LOCATIONS.AT)
-    
-    })
 
     test('A/B Negative AT test Goddes', async ({page}) => {
         const methods = new Methods(page)
@@ -35,7 +31,11 @@ test.describe('A/B Negative AT test', async  () => {
         await recursionsAT.recursiveNegativeTestPharaohAT('samoilenkofluttershy@gmail.com')
     })
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-    })
+
+})
+
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()   
+    await vpnController.vpnDisconnect()
 })
