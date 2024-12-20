@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/vpnController/vpnController';
-import RecursionsAT from '../../../src/methods/Recursions/Positive/recursionsAT';
-import { Methods } from '../../../src/methods/methods';
+import RecursionsStageAT from '../../../src/methods/Recursions/Stage/Positive/recursionsAT';
 
     
 
@@ -12,16 +11,16 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B AT Stage test', async  () => {
-    const recursionsAT = new RecursionsAT()
+    const recursionsAT = new RecursionsStageAT()
 
     test('A/B AT test Goddes', async () => {
 
-        await recursionsAT.recursiveTestGoddesAT(STAGE_LINK)
+        await recursionsAT.recursiveTestStageGoddesAT(STAGE_LINK)
     })
 
     test('A/B AT test Pharaoh', async () => {
 
-        await recursionsAT.recursiveTestPharaohAT(STAGE_LINK)
+        await recursionsAT.recursiveTestStagePharaohAT(STAGE_LINK)
     })
 })
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LOCATIONS } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/vpnController/vpnController';
-import RecursionsNegativeNL from '../../../src/methods/Recursions/Negative/recursionsNegativeNL';
+import RecursionsNegativeNL from '../../../src/methods/Recursions/Prod/Negative/recursionsNegativeNL';
 import { Methods } from '../../../src/methods/methods';
 import { reverse } from 'dns';
 

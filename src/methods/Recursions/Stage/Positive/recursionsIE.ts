@@ -1,11 +1,11 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_GERMANY_LINKS } from "../../../Data/DE/germanyExpectedLinks";
-import { GERMANY_LINK } from "../../../Data/DE/germanyLinks";
+import { EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_IRELAND_STAGE_LINKS } from "../../../../Data/IE/ielandExpectedLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
+import { IRELAND_LINKS } from "../../../../Data/IE/irelandLinks";
 
 
 
@@ -19,10 +19,10 @@ async function startBrowser() {
     return browser;
   }
 
-export default class RecursionsDE {
+export default class RecursionsStageIE {
     constructor(){}
 
-    async recursiveTestGoddesDE(stageLink?: string): Promise<any> {
+    async recursiveTestStageGoddesIE(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -34,20 +34,20 @@ export default class RecursionsDE {
         const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINK)
+        await methods.visitPage(stageLink ||IRELAND_LINKS)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.goddes){
+        if (baseCurrentUrl === EXPECTED_IRELAND_STAGE_LINKS.goddes){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.goddes, EXPECTED_GERMANY_LINKS.pharaoh)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_IRELAND_STAGE_LINKS.goddes, EXPECTED_IRELAND_STAGE_LINKS.pharaoh)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryIE)
 
             await page.waitForTimeout(1000)
 
             
-            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesDE.png`})
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesIE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -76,8 +76,8 @@ export default class RecursionsDE {
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.goddes}\n${EXPECTED_GERMANY_LINKS.pharaoh}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_IRELAND_STAGE_LINKS.goddes}\n${EXPECTED_IRELAND_STAGE_LINKS.pharaoh}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryIE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -92,11 +92,11 @@ export default class RecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestGoddesDE(stageLink);
+            return this.recursiveTestStageGoddesIE(stageLink);
         }
     }
 
-    async recursiveTestPharaohDE(stageLink?: string): Promise<any> {
+    async recursiveTestStagePharaohIE(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -108,20 +108,20 @@ export default class RecursionsDE {
         const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINK)
+        await methods.visitPage(stageLink || IRELAND_LINKS)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.pharaoh){
+        if (baseCurrentUrl === EXPECTED_IRELAND_STAGE_LINKS.pharaoh){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.pharaoh, EXPECTED_GERMANY_LINKS.goddes)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_IRELAND_STAGE_LINKS.pharaoh, EXPECTED_IRELAND_STAGE_LINKS.goddes)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryIE)
 
             await page.waitForTimeout(1000)
 
             
-            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohDE.png`})
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohIE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -152,8 +152,8 @@ export default class RecursionsDE {
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.pharaoh}\n${EXPECTED_GERMANY_LINKS.goddes}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_IRELAND_STAGE_LINKS.pharaoh}\n${EXPECTED_IRELAND_STAGE_LINKS.goddes}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryIE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -168,7 +168,7 @@ export default class RecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestPharaohDE(stageLink);
+            return this.recursiveTestStagePharaohIE(stageLink);
         }
     }
 }

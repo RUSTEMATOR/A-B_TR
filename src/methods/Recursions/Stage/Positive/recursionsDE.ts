@@ -1,11 +1,11 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { ERROR_TEXT, EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_AUSTRALIA_LINKS } from "../../../Data/AU/expectedAustraliaLinks";
-import { AUSTRALIA_LINK } from "../../../Data/AU/australiaLinks";
+import { EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_GERMANY_STAGE_LINKS } from "../../../../Data/DE/germanyExpectedLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
+
 
 
 
@@ -18,10 +18,10 @@ async function startBrowser() {
     return browser;
   }
 
-export default class RecursionsNegativeAU {
+export default class RecursionsStageDE {
     constructor(){}
 
-    async recursiveNegativeTestGoddesAU(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveTestStageGoddesDE(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -30,19 +30,23 @@ export default class RecursionsNegativeAU {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods1Step(page)
+        const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINK)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_LINKS.goddes){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_LINKS.goddes){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_LINKS.goddes, EXPECTED_AUSTRALIA_LINKS.pharaoh)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryAU)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_LINKS.goddes, EXPECTED_GERMANY_STAGE_LINKS.pharaoh)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
 
             await page.waitForTimeout(1000)
+
+            
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesDE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -61,39 +65,37 @@ export default class RecursionsNegativeAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_LINKS.goddes}\n${EXPECTED_AUSTRALIA_LINKS.pharaoh}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAU}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_LINKS.goddes}\n${EXPECTED_GERMANY_STAGE_LINKS.pharaoh}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
-            
 
             await ctx.close();
 
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestGoddesAU(wrongEmail, stageLink);
+            return this.recursiveTestStageGoddesDE(stageLink);
         }
     }
 
-    async recursiveNegativeTestPharaohAU(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveTestStagePharaohDE(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -102,20 +104,23 @@ export default class RecursionsNegativeAU {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods1Step(page)
+        const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINK)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_LINKS.pharaoh){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_LINKS.pharaoh){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_LINKS.pharaoh, EXPECTED_AUSTRALIA_LINKS.goddes)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryAU)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_LINKS.pharaoh, EXPECTED_GERMANY_STAGE_LINKS.goddes)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
 
             await page.waitForTimeout(1000)
 
+            
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohDE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -136,26 +141,25 @@ export default class RecursionsNegativeAU {
 
             await regMethods.openRegForm('section.main .btn')
 
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_LINKS.pharaoh}\n${EXPECTED_AUSTRALIA_LINKS.goddes}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAU}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_LINKS.pharaoh}\n${EXPECTED_GERMANY_STAGE_LINKS.goddes}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             // console.log('Actual stag:', actualStag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
 
             await ctx.close();
@@ -163,7 +167,7 @@ export default class RecursionsNegativeAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestPharaohAU(wrongEmail, stageLink);
+            return this.recursiveTestStagePharaohDE(stageLink);
         }
     }
 }

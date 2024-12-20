@@ -9,3 +9,8 @@ export const EXPECTED_AUSTRIA_LINKS: IExpectedLinks = {
     goddes: 'https://lpriches.com/de/goddess_1',
     pharaoh: 'https://lpriches.com/de/pharaoh_1'
 }
+
+export const EXPECTED_AUSTRIA_STAGE_LINKS: IExpectedLinks = {
+    goddes: 'https://kbc-tr-landings-stage.pages.dev/de/goddess_1',
+    pharaoh: 'https://kbc-tr-landings-stage.pages.dev/de/pharaoh_1'
+}

@@ -1,10 +1,10 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_AUSTRALIA_LINKS } from "../../../Data/AU/expectedAustraliaLinks";
-import { AUSTRALIA_LINK } from "../../../Data/AU/australiaLinks";
+import { EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_AUSTRALIA_LINKS } from "../../../../Data/AU/expectedAustraliaLinks";
+import { AUSTRALIA_LINK } from "../../../../Data/AU/australiaLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
 
 

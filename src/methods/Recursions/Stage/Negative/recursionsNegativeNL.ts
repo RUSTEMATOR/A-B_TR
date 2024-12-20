@@ -1,13 +1,11 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { ERROR_TEXT, EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_NETHERLAND_LINKS } from "../../../Data/NL/netherlandsExpectedLinks";
+import { ERROR_TEXT, EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_NETHERLANDS_STAGE_LINKS } from "../../../../Data/NL/netherlandsExpectedLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
-import { NETHERLAND_LINK } from "../../../Data/NL/netherlandsLinks";
-
-
+import { NETHERLAND_LINK } from "../../../../Data/NL/netherlandsLinks";
 
 
 let browser: Browser
@@ -19,10 +17,10 @@ async function startBrowser() {
     return browser;
   }
 
-export default class RecursionsNegativeNL {
+export default class RecursionsNegativeStageNL {
     constructor(){}
 
-    async recursiveNegativeTestGoddesNL(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveNegativeTestStageGoddesNL(wrongEmail: string, stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -37,11 +35,11 @@ export default class RecursionsNegativeNL {
         await methods.visitPage(stageLink || NETHERLAND_LINK)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_NETHERLAND_LINKS.goddes){
+        if (baseCurrentUrl === EXPECTED_NETHERLANDS_STAGE_LINKS.goddes){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_NETHERLAND_LINKS.goddes, EXPECTED_NETHERLAND_LINKS.pharaoh)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_NETHERLANDS_STAGE_LINKS.goddes, EXPECTED_NETHERLANDS_STAGE_LINKS.pharaoh)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryNL)
 
             await page.waitForTimeout(1000)
@@ -74,7 +72,7 @@ export default class RecursionsNegativeNL {
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NETHERLAND_LINKS.goddes}\n${EXPECTED_NETHERLAND_LINKS.pharaoh}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NETHERLANDS_STAGE_LINKS.goddes}\n${EXPECTED_NETHERLANDS_STAGE_LINKS.pharaoh}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryNL}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -92,11 +90,11 @@ export default class RecursionsNegativeNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestGoddesNL(wrongEmail, stageLink);
+            return this.recursiveNegativeTestStageGoddesNL(wrongEmail, stageLink);
         }
     }
 
-    async recursiveNegativeTestPharaohNL(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveNegativeTestStagePharaohNL(wrongEmail: string, stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -108,14 +106,14 @@ export default class RecursionsNegativeNL {
 
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NETHERLAND_LINK)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_NETHERLAND_LINKS.pharaoh){
+        if (baseCurrentUrl === EXPECTED_NETHERLANDS_STAGE_LINKS.pharaoh){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_NETHERLAND_LINKS.pharaoh, EXPECTED_NETHERLAND_LINKS.goddes)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_NETHERLANDS_STAGE_LINKS.pharaoh, EXPECTED_NETHERLANDS_STAGE_LINKS.goddes)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryNL)
 
             await page.waitForTimeout(1000)
@@ -149,7 +147,7 @@ export default class RecursionsNegativeNL {
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NETHERLAND_LINKS.pharaoh}\n${EXPECTED_NETHERLAND_LINKS.goddes}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NETHERLANDS_STAGE_LINKS.pharaoh}\n${EXPECTED_NETHERLANDS_STAGE_LINKS.goddes}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryNL}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -167,7 +165,7 @@ export default class RecursionsNegativeNL {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestPharaohNL(wrongEmail, stageLink);
+            return this.recursiveNegativeTestStagePharaohNL(wrongEmail, stageLink);
         }
     }
 }

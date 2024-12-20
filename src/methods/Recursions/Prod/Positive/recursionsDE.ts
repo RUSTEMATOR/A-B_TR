@@ -1,12 +1,13 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_AUSTRIA_LINKS } from "../../../Data/AT/expectedAustriaLinks";
-import { AUSTRALIA_LINK } from "../../../Data/AU/australiaLinks";
+import { EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_GERMANY_LINKS } from "../../../../Data/DE/germanyExpectedLinks";
+import { GERMANY_LINK } from "../../../../Data/DE/germanyLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
-import { AUSTRIA_LINK } from "../../../Data/AT/austriaLinks";
+
+
 
 
 let browser: Browser
@@ -18,10 +19,10 @@ async function startBrowser() {
     return browser;
   }
 
-export default class RecursionsAT {
+export default class RecursionsDE {
     constructor(){}
 
-    async recursiveTestGoddesAT(stageLink?: string): Promise<any> {
+    async recursiveTestGoddesDE(stageLink?: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -33,35 +34,35 @@ export default class RecursionsAT {
         const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRIA_LINK)
+        await methods.visitPage(stageLink || GERMANY_LINK)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_AUSTRIA_LINKS.goddes){
+        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.goddes){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRIA_LINKS.goddes, EXPECTED_AUSTRIA_LINKS.pharaoh)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryAT)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.goddes, EXPECTED_GERMANY_LINKS.pharaoh)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
 
             await page.waitForTimeout(1000)
 
             
-            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesAT.png`})
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesDE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
 
             if(stageLink){
-            const expectedStag = await regMethods.extractStag(stageLink);
-            console.log('Expected stag:', expectedStag);
-            
-
-            const currentUrl = await regMethods.page.url()
-            const actualStag = await regMethods.extractStag(currentUrl);
-            expect(actualStag).toEqual(expectedStag)
-            } else {
-                console.log('The test is for prod, not checking Stag')
-            }
+                const expectedStag = await regMethods.extractStag(stageLink);
+                console.log('Expected stag:', expectedStag);
+    
+                const currentUrl = await regMethods.page.url()
+                const actualStag = await regMethods.extractStag(currentUrl);
+                expect(actualStag).toEqual(expectedStag)
+                console.log('Actual stag:', actualStag);
+                } else {
+                    console.log('The test is for prod, not checking Stag')
+                }
 
             const finalUrl = await regMethods.page.url()
 
@@ -75,13 +76,13 @@ export default class RecursionsAT {
 
                 Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRIA_LINKS.goddes}\n${EXPECTED_AUSTRIA_LINKS.pharaoh}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAT}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.goddes}\n${EXPECTED_GERMANY_LINKS.pharaoh}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
             console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
-            // console.log('Actual stag:', actualStag);
+            
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
@@ -91,11 +92,11 @@ export default class RecursionsAT {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestGoddesAT(stageLink);
+            return this.recursiveTestGoddesDE(stageLink);
         }
     }
 
-    async recursiveTestPharaohAT(stageLink?: string): Promise<any> {
+    async recursiveTestPharaohDE(stageLink?: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -107,28 +108,35 @@ export default class RecursionsAT {
         const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRIA_LINK)
+        await methods.visitPage(stageLink || GERMANY_LINK)
         const baseCurrentUrl = await methods.formBaseLink()
 
-        if (baseCurrentUrl === EXPECTED_AUSTRIA_LINKS.pharaoh){
+        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.pharaoh){
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRIA_LINKS.pharaoh, EXPECTED_AUSTRIA_LINKS.goddes)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryAT)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.pharaoh, EXPECTED_GERMANY_LINKS.goddes)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryDE)
 
             await page.waitForTimeout(1000)
 
             
-            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohAT.png`})
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohDE.png`})
 
-            // const expectedStag = await regMethods.extractStag(stageLink || AUSTRIA_LINK);
-            // console.log('Expected stag:', expectedStag);
-            
+            const currentUrl = await regMethods.page.url()
+            const actualStag = await regMethods.extractStag(currentUrl);
 
-            // const currentUrl = await regMethods.page.url()
-            // const actualStag = await regMethods.extractStag(currentUrl);
-            // expect(actualStag).toEqual(expectedStag)
+            if(stageLink){
+                const expectedStag = await regMethods.extractStag(stageLink);
+                console.log('Expected stag:', expectedStag);
+    
+                const currentUrl = await regMethods.page.url()
+                const actualStag = await regMethods.extractStag(currentUrl);
+                expect(actualStag).toEqual(expectedStag)
+                console.log('Actual stag:', actualStag);
+                } else {
+                    console.log('The test is for prod, not checking Stag')
+                }
 
             const finalUrl = await regMethods.page.url()
 
@@ -141,9 +149,11 @@ export default class RecursionsAT {
     
             qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
+
+                Actual stag: ${actualStag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRIA_LINKS.pharaoh}\n${EXPECTED_AUSTRIA_LINKS.goddes}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryAT}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.pharaoh}\n${EXPECTED_GERMANY_LINKS.goddes}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expctedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -158,7 +168,7 @@ export default class RecursionsAT {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestPharaohAT(stageLink);
+            return this.recursiveTestPharaohDE(stageLink);
         }
     }
 }

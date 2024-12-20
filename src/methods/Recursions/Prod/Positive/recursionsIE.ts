@@ -1,11 +1,11 @@
-import { Methods } from "../../methods";
+import { Methods } from "../../../methods";
 import { chromium, type Browser, expect } from "@playwright/test";
-import { ERROR_TEXT, EXPECTED_QUERY } from "../../../Data/constants";
-import { EXPECTED_IRELAND_LINKS } from "../../../Data/IE/ielandExpectedLinks";
+import { EXPECTED_QUERY } from "../../../../Data/constants";
+import { EXPECTED_IRELAND_LINKS } from "../../../../Data/IE/ielandExpectedLinks";
 import { qase } from "playwright-qase-reporter/playwright";
-import { RegMethods1Step } from "../../regMethods1step";
+import { RegMethods1Step } from "../../../regMethods1step";
 import moment from "moment";
-import { IRELAND_LINKS } from "../../../Data/IE/irelandLinks";
+import { IRELAND_LINKS } from "../../../../Data/IE/irelandLinks";
 
 
 
@@ -19,10 +19,10 @@ async function startBrowser() {
     return browser;
   }
 
-export default class RecursionsNegativeIE {
+export default class RecursionsIE {
     constructor(){}
 
-    async recursiveNegativeTestGoddesIE(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveTestGoddesIE(stageLink?: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -31,6 +31,7 @@ export default class RecursionsNegativeIE {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods1Step(page)
+        const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink ||IRELAND_LINKS)
@@ -44,6 +45,9 @@ export default class RecursionsNegativeIE {
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryIE)
 
             await page.waitForTimeout(1000)
+
+            
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/GoddesIE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -62,12 +66,12 @@ export default class RecursionsNegativeIE {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
                 Actual stag: ${actualStag}\n\n
@@ -77,24 +81,22 @@ export default class RecursionsNegativeIE {
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
-         
 
             await ctx.close();
 
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestGoddesIE(wrongEmail, stageLink);
+            return this.recursiveTestGoddesIE(stageLink);
         }
     }
 
-    async recursiveNegativeTestPharaohIE(wrongEmail: string, stageLink?: string): Promise<any> {
+    async recursiveTestPharaohIE(stageLink?: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -103,6 +105,7 @@ export default class RecursionsNegativeIE {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods1Step(page)
+        const randomEmail = `automaton_${await methods.generateRandomEmail(5)}@kingbilly.xyz`
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink || IRELAND_LINKS)
@@ -116,6 +119,9 @@ export default class RecursionsNegativeIE {
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expctedQueryIE)
 
             await page.waitForTimeout(1000)
+
+            
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/PharaohIE.png`})
 
             const currentUrl = await regMethods.page.url()
             const actualStag = await regMethods.extractStag(currentUrl);
@@ -136,12 +142,12 @@ export default class RecursionsNegativeIE {
 
             await regMethods.openRegForm('section.main .btn')
 
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
 
                 Actual stag: ${actualStag}\n\n
@@ -151,20 +157,18 @@ export default class RecursionsNegativeIE {
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             // console.log('Actual stag:', actualStag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('.warning', ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
-           
 
             await ctx.close();
 
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveNegativeTestPharaohIE(wrongEmail, stageLink);
+            return this.recursiveTestPharaohIE(stageLink);
         }
     }
 }

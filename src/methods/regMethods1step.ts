@@ -46,7 +46,7 @@ export class RegMethods1Step {
         await this.page.locator("button[type=submit]").click()
     }
 
-    async logActions(randomEmail: string, actualstag: string, expectedstag: string){
+    async logActions(randomEmail: string, actualstag?: string, expectedstag?: string){
         const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         const finalUrl = this.page.url()
 

@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/vpnController/vpnController';
-import RecursionsNegativeDE from '../../../src/methods/Recursions/Negative/recursionsNegativeDE';
-import { Methods } from '../../../src/methods/methods';
+import RecursionsNegativeStageDE from '../../../src/methods/Recursions/Stage/Negative/recursionsNegativeDE';
 
     
     
@@ -14,16 +13,16 @@ test.beforeAll(async () => {
 
 test.describe('A/B Negative DE test', async  () => {
     const vpnController = new VpnController()
-    const recursionsDE = new RecursionsNegativeDE()
+    const recursionsDE = new RecursionsNegativeStageDE()
 
     test('A/B Negative DE test Goddes', async () => {
 
-        await recursionsDE.recursiveNegativeTestGoddesDE('samoilenkofluttershy@gmail.com', STAGE_LINK)
+        await recursionsDE.recursiveNegativeTestStageGoddesDE('samoilenkofluttershy@gmail.com', STAGE_LINK)
     })
 
     test('A/B Negative DE test Pharaoh', async () => {
  
-        await recursionsDE.recursiveNegativeTestPharaohDE('samoilenkofluttershy@gmail.com', STAGE_LINK)
+        await recursionsDE.recursiveNegativeTestStagePharaohDE('samoilenkofluttershy@gmail.com', STAGE_LINK)
     })
 
 })
