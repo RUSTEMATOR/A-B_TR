@@ -592,3 +592,11 @@ Message: Unknown error
 [2024-12-05T10:59:13.939Z] [DEBUG] qase: Results sent to Qase: 24
 [2024-12-05T10:59:14.150Z] [INFO] qase: [32mRun 107 completed[39m
 [2024-12-05T10:59:14.151Z] [INFO] qase: [34mTest run link: https://app.qase.io/run/AUTOMATION/dashboard/107[39m
+[2024-12-23T13:58:08.308Z] [DEBUG] qase: Config: {"configDir":"C:\\Users\\User\\Desktop\\Automation\\ABtestTR","_mode":"test","_isTestServer":false,"_commandHash":"b699d7f","debug":true,"mode":"testops","logging":true,"testops":{"api":{"token":"2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b"},"project":"AUTOMATION","uploadAttachments":true,"run":{"complete":true,"title":"A/B TR Full","description":""},"plan":{},"batch":{}},"frameworkPackage":"@playwright/test","frameworkName":"playwright","reporterName":"playwright-qase-reporter","report":{"connections":{"local":{}}}}
+[2024-12-23T13:58:08.969Z] [DEBUG] qase: Starting test run
+[2024-12-23T13:58:08.969Z] [DEBUG] qase: Creating test run
+[2024-12-23T13:58:09.880Z] [DEBUG] qase: Test run created: 186
+[2024-12-23T13:58:09.881Z] [DEBUG] qase: Publishing test run results
+[2024-12-23T13:58:09.884Z] [INFO] qase: [33mNo results to send to Qase[39m
+[2024-12-23T13:58:10.133Z] [INFO] qase: [32mRun 186 completed[39m
+[2024-12-23T13:58:10.133Z] [INFO] qase: [34mTest run link: https://app.qase.io/run/AUTOMATION/dashboard/186[39m

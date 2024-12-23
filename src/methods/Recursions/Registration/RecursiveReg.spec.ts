@@ -17,16 +17,16 @@ async recursiveRegistration({
     expectedComparisonLink1,
     expectedComparisonLink2,
     expectedUTMQuery,
-    isStage, 
     regFormLocator,
+    isRegFormButton
 }: {
     url: string,
     expectedLink: string,
     expectedComparisonLink1: string,
     expectedComparisonLink2: string,
     expectedUTMQuery: string,
-    isStage: boolean, 
     regFormLocator: string,
+    isRegFormButton: boolean
 }
 
 ): Promise<void> {
@@ -45,20 +45,25 @@ async recursiveRegistration({
         const baseCurrentUrl = await methods.formBaseLink()
 
         if (baseCurrentUrl === expectedLink){
+            if (isRegFormButton) {
+                await test.step('Open reg form', async () => {
+                    await regMethods.openRegForm(regFormLocator)
+                })
+            } else {
+                await test.step('Reg form button not present', async () => {
+                    console.log('Registration form button is not present.')
+                })
+            }
 
-            test.step('Open reg form',async () => {
-                await regMethods.openRegForm(regFormLocator)
-            })
-
-            test.step('Fill in reg credentials', async () => {
+            await test.step('Fill in reg credentials', async () => {
                 await regMethods.fillEmailPass({email: randomEmail, pass: '193786Az()'})
             })
 
-            test.step('Check adult checkbox', async () => {
+            await test.step('Check adult checkbox', async () => {
                 await regMethods.checkAdultCheckbox()
             })
 
-            test.step('Log actions', async () => {
+            await test.step('Log actions', async () => {
                 await regMethods.logActions(randomEmail)
             })
 
@@ -84,8 +89,8 @@ async recursiveRegistration({
                 expectedComparisonLink1,
                 expectedComparisonLink2,
                 expectedUTMQuery,
-                isStage, 
                 regFormLocator,
+                isRegFormButton
             });
         }
 
@@ -97,16 +102,21 @@ async recursiveRegistration({
         expectedComparisonLink1,
         expectedComparisonLink2,
         expectedUTMQuery,
-        isStage, 
         regFormLocator,
+        expectedLocator,
+        expectedText,
+        isRegFormButton
     }: {
         url: string,
         expectedLink: string,
         expectedComparisonLink1: string,
         expectedComparisonLink2: string,
         expectedUTMQuery: string,
-        isStage: boolean, 
         regFormLocator: string,
+        expectedLocator: string,
+        expectedText: string,
+        isRegFormButton: boolean
+        
     }
     
     ): Promise<void> {
@@ -126,46 +136,53 @@ async recursiveRegistration({
     
             if (baseCurrentUrl === expectedLink){
     
-                test.step('Open reg form',async () => {
-                    await regMethods.openRegForm(regFormLocator)
-                })
+                if (isRegFormButton) {
+                    await test.step('Open reg form', async () => {
+                        await regMethods.openRegForm(regFormLocator)
+                    })
+                } else {
+                    await test.step('Reg form button not present', async () => {
+                        console.log('Registration form button is not present.')
+                    })
+                }
     
-                test.step('Fill in reg credentials', async () => {
+                await test.step('Fill in reg credentials', async () => {
                     await regMethods.fillEmailPass({email: email, pass: '193786Az()'})
                 })
     
-                test.step('Check adult checkbox', async () => {
+                await test.step('Check adult checkbox', async () => {
                     await regMethods.checkAdultCheckbox()
                 })
     
-                test.step('Log actions', async () => {
+                await test.step('Log actions', async () => {
                     await regMethods.logActions(email)
                 })
     
-                test.step('Create an account', async () => {
+                await test.step('Create an account', async () => {
                     await regMethods.createAnAccount()
                 })
-    
-                test.step('Expect error to be visible', async () => {
-                    await regMethods.expectToBeVisible(, 'Deposit')
-                })
-    
-    
+
                 await regMethods.page.waitForTimeout(10000)
+    
+                await test.step('Expect error to be visible', async () => {
+                    await regMethods.expectToBeVisible(expectedLocator, expectedText)
+                })
     
                 await ctx.close();
     
             } else {
                 methods.sleep(1000)
                 await ctx.close();
-                return this.recursiveRegistration({
+                return this.negativeRecursiveRegistration({
                     url,
                     expectedLink,
                     expectedComparisonLink1,
                     expectedComparisonLink2,
                     expectedUTMQuery,
-                    isStage, 
+                    expectedLocator,
+                    expectedText,
                     regFormLocator,
+                    isRegFormButton
                 });
             }
     
